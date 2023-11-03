@@ -26,50 +26,35 @@ jobs:
             extra_args: '--coverage --tbb --num-tasks=64'
             extra_packages: 'clang-tidy'
             standard: '11'
-            os-release: '20.04'
+            os-release: '22.04'
           - build_type: 'RelWithDebInfo'
             build_libs: 'shared'
-            compiler: 'clang-12'
+            compiler: 'clang-15'
             extra_args: '--num-tasks=256 --sanitizer --sanitizer-type=leak --static-analysis'
-            extra_packages: 'clang-tidy-12'
+            extra_packages: 'clang-tidy-15'
             standard: '11'
-            os-release: '20.04'
+            os-release: '22.04'
           - build_type: 'RelWithDebInfo'
             build_libs: 'shared'
-            compiler: 'clang-12'
+            compiler: 'clang-15'
             extra_args: '--num-tasks=256 --tbb --sanitizer --sanitizer-type=address --static-analysis'
-            extra_packages: 'clang-tidy-12'
+            extra_packages: 'clang-tidy-15'
             standard: '14'
-            os-release: '20.04'
+            os-release: '22.04'
           - build_type: 'RelWithDebInfo'
             build_libs: 'shared'
-            compiler: 'clang-12'
+            compiler: 'clang-15'
             extra_args: '--num-tasks=256 --tbb --sanitizer --sanitizer-type=thread --static-analysis'
             extra_cmake: '-DPTL_USE_LOCKS=ON'
-            extra_packages: 'clang-tidy-12'
+            extra_packages: 'clang-tidy-15'
             standard: '17'
-            os-release: '20.04'
-        exclude:
-          # Ubuntu 20.04 (Focal)
-          - os-release: '20.04'
-            compiler: 'gcc-12'
-          # Ubuntu 22.04 (Jammy)
-          - os-release: '22.04'
-            compiler: 'gcc-7'
-          - os-release: '22.04'
-            compiler: 'gcc-8'
-          - os-release: '22.04'
-            compiler: 'clang-7'
-          - os-release: '22.04'
-            compiler: 'clang-8'
-          - os-release: '22.04'
-            compiler: 'clang-10'
+            os-release: '22.04'
         build_type: ['Release']
         build_libs: ['shared static']
-        compiler: ['gcc-7', 'gcc-8', 'gcc-9', 'gcc-10', 'gcc-11', 'gcc-12', 'clang-7', 'clang-8', 'clang-10', 'clang-11', 'clang-12']
+        compiler: ['gcc-10', 'gcc-11', 'gcc-12', 'gcc-13', 'clang-13', 'clang-14', 'clang-15']
         extra_args: ['--num-tasks=256 --tbb']
         standard: ['11', '17']
-        os-release: ['20.04', '22.04']
+        os-release: ['22.04']
 
     steps:
     - uses: actions/checkout@v2
