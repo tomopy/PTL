@@ -2,9 +2,9 @@ name: macos-ci
 
 on:
   push:
-    branches: [master, main, develop]
+    branches: [master, main, develop, '*.x']
   pull_request:
-    branches: [master, main, develop]
+    branches: [master, main, develop, '*.x']
 
 env:
   BUILD_TYPE: Release
