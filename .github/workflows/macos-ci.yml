@@ -16,10 +16,10 @@ jobs:
       matrix:
         build_libs: ["shared static"]
         build_type: ["Release"]
-        compiler: ["clang-14", "clang-15"]
+        compiler: ["clang-16", "clang-17"]
         extra_args: ["--num-tasks=256 --tbb"]
         extra_packages: ["clangdev tbb-devel"]
-        os-release: ["macos-12", "macos-11"]
+        os-release: ["macos-11", "macos-12", "macos-13""]
         standard: ["11", "17"]
     steps:
       - uses: actions/checkout@v2
