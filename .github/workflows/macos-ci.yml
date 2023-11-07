@@ -18,8 +18,10 @@ jobs:
         build_type: ["Release"]
         compiler: ["clang-13", "clang-14"]
         extra_args: ["--num-tasks=256 --tbb"]
+        extra_cmake: [""]
+        extra_ctest: [""]
         extra_packages: ["clangdev tbb-devel"]
-        os-release: ["macos-11", "macos-12", "macos-13""]
+        os-release: ["macos-11", "macos-12", "macos-13"]
         standard: ["11", "17"]
     steps:
       - uses: actions/checkout@v2
