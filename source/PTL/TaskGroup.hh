@@ -654,13 +654,13 @@ TaskGroup<Tp, Arg, MaxDepth>::join(Up accum)
 {
     this->wait();
     for(auto& itr : m_task_list)
-    {        
+    {
         auto&& ret = itr->get();
         using RetT = decay_t<decltype(ret)>;
         accum      = std::move(m_join(std::ref(accum), std::forward<RetT>(ret)));
     }
     for(auto& itr : m_future_list)
-    {        
+    {
         auto&& ret = itr.get();
         using RetT = decay_t<decltype(ret)>;
         accum      = std::move(m_join(std::ref(accum), std::forward<RetT>(ret)));
