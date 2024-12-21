@@ -655,13 +655,15 @@ TaskGroup<Tp, Arg, MaxDepth>::join(Up accum)
     this->wait();
     for(auto& itr : m_task_list)
     {
-        using RetT = decay_t<decltype(itr->get())>;
-        accum      = std::move(m_join(std::ref(accum), std::forward<RetT>(itr->get())));
+        auto&& ret = itr->get();
+        using RetT = decay_t<decltype(ret)>;
+        accum      = std::move(m_join(std::ref(accum), std::forward<RetT>(ret)));
     }
     for(auto& itr : m_future_list)
     {
-        using RetT = decay_t<decltype(itr.get())>;
-        accum      = std::move(m_join(std::ref(accum), std::forward<RetT>(itr.get())));
+        auto&& ret = itr.get();
+        using RetT = decay_t<decltype(ret)>;
+        accum      = std::move(m_join(std::ref(accum), std::forward<RetT>(ret)));
     }
     this->clear();
     return accum;
@@ -691,13 +693,15 @@ TaskGroup<Tp, Arg, MaxDepth>::join()
     this->wait();
     for(auto& itr : m_task_list)
     {
-        using RetT = decay_t<decltype(itr->get())>;
-        m_join(std::forward<RetT>(itr->get()));
+        auto&& ret = itr->get();
+        using RetT = decay_t<decltype(ret)>;
+        m_join(std::forward<RetT>(ret));
     }
     for(auto& itr : m_future_list)
     {
-        using RetT = decay_t<decltype(itr.get())>;
-        m_join(std::forward<RetT>(itr.get()));
+        auto&& ret = itr.get();
+        using RetT = decay_t<decltype(ret)>;
+        m_join(std::forward<RetT>(ret));
     }
     this->clear();
 }
